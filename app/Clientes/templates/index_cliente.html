@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+   <!-- mostrar los mensajes flash  -->
+{% for mensaje in get_flashed_messages()  %}
+<div class="alert alert-success alert-dismissable">
+      <button type="button" data-dismiss="alert" class="close">&times;</button>  
+    {{ mensaje }}
+
+</div>
+{% endfor %}
+    <h1 > Listado de clientes  </h1>
+    <a href="/clientes/nuevo" class="btn btn-success">Nuevo Cliente</a>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>contraseña</th>
+                <th>Correo</th>
+                <th>Actualizar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{cliente.username}}</td>
+                <td>{{cliente.password}}</td>
+                <td>{{cliente.email}}</td>
+                <td><a href="/clientes/editar/{{cliente.id}}">Actualizar</a></td>
+                <td><a href="/clientes/eliminar/{{cliente.id}}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
